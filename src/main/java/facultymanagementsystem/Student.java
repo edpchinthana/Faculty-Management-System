@@ -9,14 +9,30 @@ package facultymanagementsystem;
  *
  * @author pasindu
  */
-public class Student {
-    
-    String name;
-    String username;
-    String password;
+public class Student extends Users{
     
     public Student(){
         
     }
+    
+    public Student(String name, String username, String password){
+        this.name = name;
+        this.username = username;
+        this.password = password;
+    }
+    
+    public void signUP(){
+        
+    }
+    
+    public void changePassword(){
+        
+    }
+    
+    public void enrollCourses(){
+        
+    }
+    
+    
     
 }

@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.sql.ResultSet;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -34,6 +35,7 @@ public class UserPage extends javax.swing.JFrame {
         hidePanels();
         importUserInfo();
         Home.setVisible(true);
+        refreshTable();
     }
 
     /**
@@ -84,7 +86,7 @@ public class UserPage extends javax.swing.JFrame {
         setBackground(new java.awt.Color(130, 140, 210));
         setMaximumSize(new java.awt.Dimension(812, 560));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(812, 560));
+        setPreferredSize(new java.awt.Dimension(740, 560));
 
         TopPannel.setBackground(new java.awt.Color(130, 140, 210));
         TopPannel.setPreferredSize(new java.awt.Dimension(740, 560));
@@ -150,6 +152,7 @@ public class UserPage extends javax.swing.JFrame {
         TopPannel.add(Home, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 31, 590, 400));
 
         MenuBar.setBackground(new java.awt.Color(216, 207, 241));
+        MenuBar.setPreferredSize(new java.awt.Dimension(76, 557));
 
         jLabel5.setBackground(new java.awt.Color(216, 207, 241));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -177,6 +180,12 @@ public class UserPage extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel4MouseExited(evt);
+            }
         });
 
         jLabel7.setBackground(new java.awt.Color(130, 140, 210));
@@ -196,6 +205,7 @@ public class UserPage extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/icons8-menu-64.png"))); // NOI18N
         jLabel3.setToolTipText("Enrolled Courses");
         jLabel3.setOpaque(true);
@@ -203,23 +213,27 @@ public class UserPage extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel3MouseExited(evt);
+            }
         });
 
         javax.swing.GroupLayout MenuBarLayout = new javax.swing.GroupLayout(MenuBar);
         MenuBar.setLayout(MenuBarLayout);
         MenuBarLayout.setHorizontalGroup(
             MenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(MenuBarLayout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         MenuBarLayout.setVerticalGroup(
             MenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuBarLayout.createSequentialGroup()
-                .addContainerGap(90, Short.MAX_VALUE)
+                .addContainerGap(138, Short.MAX_VALUE)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,7 +252,7 @@ public class UserPage extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null}
+
             },
             new String [] {
                 "Course Code", "Course Name", "Enroll"
@@ -279,6 +293,11 @@ public class UserPage extends javax.swing.JFrame {
         jLabel20.setBackground(new Color(0,0,0,0));
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/icons8-key-64.png"))); // NOI18N
         jLabel20.setOpaque(true);
+        jLabel20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel20MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -312,7 +331,7 @@ public class UserPage extends javax.swing.JFrame {
         EnrolledCoursesLayout.setHorizontalGroup(
             EnrolledCoursesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EnrolledCoursesLayout.createSequentialGroup()
-                .addContainerGap(164, Short.MAX_VALUE)
+                .addContainerGap(152, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -392,6 +411,11 @@ public class UserPage extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jButton1.setText("Save");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -517,11 +541,11 @@ public class UserPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void jLabel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseEntered
-        
+        jLabel7.setBackground(Color.decode("#c7cceb"));
     }//GEN-LAST:event_jLabel7MouseEntered
 
     private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited
-        // TODO add your handling code here:
+        jLabel7.setBackground(Color.decode("#d8cff1"));
     }//GEN-LAST:event_jLabel7MouseExited
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
@@ -529,6 +553,105 @@ public class UserPage extends javax.swing.JFrame {
         EnrolledCourses.setVisible(true);
         jLabel3.setBackground(Color.decode("#828cd2"));
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String a = String.valueOf(jPasswordField1.getPassword());
+        String b = String.valueOf(jPasswordField1.getPassword());
+        String c = String.valueOf(jPasswordField1.getPassword());
+        
+        if(a.equals("")||b.equals("")||c.equals("")){
+            JFrame f = new JFrame();
+            JOptionPane.showMessageDialog(f,"Error\nCheck input fields"); 
+        }else{
+            String query = "SELECT * FROM "+this.role+" WHERE username ='"+this.username+"';";
+            try{
+                ResultSet rs = dbO.getResult(query);
+                String temp="";
+                while(rs.next()){
+                    temp=rs.getString("password");
+                }
+               
+                if(temp.equals(a)){
+                    if(b.equals(c)){
+                        String query2 = "UPDATE "+this.role+" SET password ='"+b+"' WHERE username = '"+this.username+"';";
+                        try{
+                            dbO.updateResult(query2);
+                            JFrame f = new JFrame();
+                            JOptionPane.showMessageDialog(f,"Password is changed successfully.");
+                            jPasswordField1.setText("");
+                            jPasswordField2.setText("");
+                            jPasswordField3.setText("");
+                        }catch(Exception e){
+                            JFrame f = new JFrame();
+                        JOptionPane.showMessageDialog(f,"Error\nPassword didnt change\n"+e); 
+                        }
+
+                    }else{
+                        JFrame f = new JFrame();
+                        JOptionPane.showMessageDialog(f,"Error\nEntered passwords didnt match"); 
+                    }
+                }else{
+                    JFrame f = new JFrame();
+                    JOptionPane.showMessageDialog(f,"Error\nEnter the correct current password"); 
+                }
+
+
+            }catch(Exception e){
+                JFrame f = new JFrame();
+                JOptionPane.showMessageDialog(f,"Error\n"+e); 
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseClicked
+         
+        String query2 = "delete from results where username ='"+this.username+"';";
+        try{
+            dbO.insertResult(query2);
+            for (int i = 0; i < jTable1.getRowCount(); i++) {
+     
+                String check = "true";
+                if(jTable1.getValueAt(i, 2)!=null){
+                    if (check.equals(jTable1.getValueAt(i, 2).toString())) {
+                        try{
+                            String query="";
+                            String course= jTable1.getValueAt(i,0).toString();
+                            query = "INSERT INTO results VALUES ('"+course+"', '"+username+"','"+role+"');";
+                            dbO.insertResult(query);
+                            }
+                            catch (Exception e)
+                            {
+                                JFrame f=new JFrame();
+                                JOptionPane.showMessageDialog(f, "Error\n" +e);
+                            }
+                      }
+            }   
+            }
+            refreshTable();
+            JFrame f=new JFrame();
+            JOptionPane.showMessageDialog(f, "Successfully inserted");
+        }catch(Exception e){
+            JFrame f=new JFrame();
+            JOptionPane.showMessageDialog(f, "Error");
+        }
+        
+    }//GEN-LAST:event_jLabel20MouseClicked
+
+    private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
+        jLabel4.setBackground(Color.decode("#c7cceb"));
+    }//GEN-LAST:event_jLabel4MouseEntered
+
+    private void jLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseEntered
+        jLabel3.setBackground(Color.decode("#c7cceb"));
+    }//GEN-LAST:event_jLabel3MouseEntered
+
+    private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
+        jLabel4.setBackground(Color.decode("#d8cff1"));
+    }//GEN-LAST:event_jLabel4MouseExited
+
+    private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
+        jLabel3.setBackground(Color.decode("#d8cff1"));
+    }//GEN-LAST:event_jLabel3MouseExited
     
     private void hidePanels(){
         Profile.setVisible(false);
@@ -552,6 +675,38 @@ public class UserPage extends javax.swing.JFrame {
         }catch(Exception e){
             JFrame f = new JFrame();
             JOptionPane.showMessageDialog(f,"Error\n"+e); 
+        }
+        
+    }
+    
+    private void refreshTable(){
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        String query = "SELECT * FROM course;";
+        try{
+            ResultSet rs = dbO.getResult(query);
+            while(rs.next()){
+                String temp = rs.getString("course_code");
+                int check=0;
+                String query2 = "SELECT * FROM results WHERE course_code = '"+temp+"' and username = '"+this.username+"';";
+                ResultSet rs2= dbO.getResult(query2);
+                try{
+                    if(rs2.next()){
+                        check=1;
+                    }
+                }catch(Exception e){
+                    JFrame f = new JFrame();
+                    JOptionPane.showMessageDialog(f,"Error\n"+e);
+                }
+                if(check==1){
+                    model.addRow(new Object[]{rs.getString("course_code"), rs.getString("course_name"), true});
+                }else{
+                    model.addRow(new Object[]{rs.getString("course_code"), rs.getString("course_name"), false});
+                }
+            }
+        }catch(Exception e){
+            JFrame f = new JFrame();
+            JOptionPane.showMessageDialog(f,"Error\n"+e);
         }
         
     }

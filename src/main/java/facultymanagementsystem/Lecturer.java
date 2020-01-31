@@ -9,6 +9,23 @@ package facultymanagementsystem;
  *
  * @author pasindu
  */
-public class Lecturer {
+public class Lecturer extends Users{
+    public Lecturer(){
+        
+    }
+    public Lecturer(String name, String username, String password){
+        this.name = name;
+        this.username = username;
+        this.password = password;
+    }
     
+    public void signUP(){
+        
+    }
+    public void enrollCourses(){
+        
+    }
+    public void changePassword(){
+        
+    }
 }
